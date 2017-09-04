@@ -3,10 +3,8 @@ helga-repost
 
 reports a repost
 
-also, optionally provides a utm tag-free url if it detects those pesky things
+also, optionally provides a utm tag-free url if it detects those pesky things::
 
-
-::
    <bigjust> hey guys, you see https://www.mnn.com/earth-matters/wilderness-resources/blogs/abbreviated-history-american-fire-lookout-towers-and-8-you-can-rent-right-now
    <zero_cool> nice!
    <nikon> yo, check out https://www.mnn.com/earth-matters/wilderness-resources/blogs/abbreviated-history-american-fire-lookout-towers-and-8-you-can-rent-right-now
