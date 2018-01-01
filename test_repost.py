@@ -1,11 +1,10 @@
 import datetime
 import mock
-import unittest
 
 from helga_repost import check_url, clean_url
 
 
-class PluginTest(unittest.TestCase):
+class TestPlugin(object):
 
     def setUp(self):
         pass
@@ -13,21 +12,16 @@ class PluginTest(unittest.TestCase):
     def test_clean_utm_url(self):
 
         utm_url = 'http://example.com?utm_tag1=athing&utm_tag2=anotherthing&id=5'
-
         cleaned_url = clean_url(utm_url)
 
-        self.assertEqual(
-            cleaned_url,
-            'http://example.com?id=5'
-        )
+        assert cleaned_url == 'http://example.com?id=5'
 
     def test_clean_already_clean_url(self):
 
         url = 'http://example.com'
         cleaned_url = clean_url(url)
 
-        self.assertEqual(cleaned_url, url)
-
+        assert cleaned_url == url
 
     @mock.patch('helga_repost.db')
     def test_check_url_new(self, mock_db):
@@ -41,8 +35,9 @@ class PluginTest(unittest.TestCase):
         }]
 
         url = 'http://www.example.com'
+        check_result = check_url('#test', 'helga', url)
 
-        self.assertIsNone(check_url('#test', 'helga', url))
+        assert check_result is None
 
     @mock.patch('helga_repost.db')
     def test_check_url_repost(self, mock_db):
@@ -63,8 +58,8 @@ class PluginTest(unittest.TestCase):
 
         result = check_url('#test', 'helga', url)
 
-        self.assertIsNotNone(result)
-        self.assertEqual('nick', result[0])
+        assert result is not None
+        assert 'nick' == result[0]
 
     @mock.patch('helga_repost.db')
     def test_same_nick_exception(self, mock_db):
@@ -83,4 +78,6 @@ class PluginTest(unittest.TestCase):
             'timestamp': datetime.datetime.utcnow(),
         }]
 
-        self.assertIsNone(check_url('#test', 'nick', url))
+        checked_url = check_url('#test', 'nick', url)
+
+        assert checked_url is None
