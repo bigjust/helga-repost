@@ -72,7 +72,7 @@ def clean_url(url):
 
     return url
 
-@match('https?://(\S*)')
+@match('(https?://\S*)')
 def repost(client, channel, nick, message, matches):
 
     for match in matches:
